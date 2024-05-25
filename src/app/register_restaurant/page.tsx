@@ -1,9 +1,12 @@
-
+import RegisterForm from "@/components/RegisterForm"
 
 const register = () => {
   return (
     <div>
-      <h1>Welcome! you can Resister the Restaurant Information here ...</h1>
+      <h1>Welcome to Resister Page! </h1>
+      <br />
+      <br />
+      <RegisterForm />
     </div>
   )
 }

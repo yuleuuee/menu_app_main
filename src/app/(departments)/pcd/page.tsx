@@ -3,10 +3,9 @@ import Link from 'next/link';
 
 const PartnerCompanyDepartment = () => {
    return (
-      <div><p>PCD login page </p>
+      <div><p>login page for manager and others</p>
          <Link href={'/pcd/manager'} className="text-blue-600 hover:text-blue-800">
-            login universal
-            
+            login
          </Link>
       </div>
 

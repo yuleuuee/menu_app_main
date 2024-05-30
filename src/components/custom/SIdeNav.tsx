@@ -17,7 +17,7 @@ type navItem = {
 const SIdeNav = ({ items }: { items: navItem[] }) => {
    return (
       <Sheet>
-         <SheetTrigger>Open</SheetTrigger>
+         <SheetTrigger>Open left_Sidebar</SheetTrigger>
          <SheetContent side={"left"}>
             <SheetHeader>
                {

@@ -14,14 +14,24 @@ const AddClientForm = () => {
          <hr />
          <hr />
          <form className="p-2 flex-row">
-            <Label htmlFor="email">Your email address :</Label>
+
+            <Label htmlFor="text">Company Name :</Label>
+            <Input type="text"/>
+
+            <Label htmlFor="text">Location :</Label>
+            <Input type="text"/>
+
+            <Label htmlFor="email">Email address :</Label>
             <Input type="email"/>
 
-            <Label htmlFor="password">Your Password :</Label>
+            <Label htmlFor="password">Password :</Label>
             <Input type="password"/>
 
             <Label htmlFor="password">Confirm Password :</Label>
             <Input type="password"/>
+
+            <Label htmlFor="number">Contact No. :</Label>
+            <Input type="number"/>
 
             
             <div className='flex items-center justify-center '>
@@ -29,7 +39,7 @@ const AddClientForm = () => {
             </div>
             
             <br />
-            <button type="submit" className="px-2 py-0.5 border border-black rounded-xl bg-blue-600 text-white font-semibold" >register</button>
+            <button type="submit" className="px-2 py-0.5 border border-black rounded-xl bg-blue-600 text-white font-semibold" >NEXT</button>
          </form>
       </>
 

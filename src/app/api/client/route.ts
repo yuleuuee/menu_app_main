@@ -1,24 +1,44 @@
-import { RegisterClient } from "@/lib/data/client";
+import { RegisterClient, TypeAdmin } from "@/lib/data/client";
 import { NextResponse, NextRequest } from "next/server";
 import { ClientDemoData } from "@/placeholderData";
+import { TypePartner } from "@/types/client";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export async function POST(request: NextRequest, response: NextResponse){
+async function streamToJson(stream: ReadableStream<Uint8Array>): Promise<TypePartner> {
+  return await new Response(stream).json();
+}
+
+export async function POST(req: NextApiRequest, res: NextApiResponse){
+  let reqObj = await streamToJson(req.body)
+  console.log("reqObj", reqObj)
+  // console.log(JSON.parse(req.body))
    try {
-      let result = await RegisterClient(ClientDemoData)
+      let result:{success: boolean, payload:{admin: TypeAdmin}|string } = await RegisterClient(reqObj)
+      
       console.log("result", result)
-      return new NextResponse(JSON.stringify({ message: 'Connection successful', result }), {
-         status: 200,
-         headers: {
-           'Content-Type': 'application/json',
-         },
-       });
-   } catch (error) {
-      console.log(error)
-      return new NextResponse(JSON.stringify({ message: 'Connection Unsuccessful' }), {
-         headers: {
-           'Content-Type': 'application/json',
-         },
-       });
+      if(!result.success){
+        throw new Error(`${result.payload}`);
+      }
+
+     // Use NextApiResponse to send the response
+      return NextResponse.json(
+        {
+          success: result.success,
+          payload: result.payload // Assuming you want to send the result back
+        },
+        {status: 200}
+      );
+
+   } catch (error:any) {
+      console.error("error at client register:",error)
+      // Use NextApiResponse to send the response
+      return NextResponse.json(
+        {
+          success: false,
+          payload: "error registering client" // Assuming you want to send the result back
+        },
+        {status: 500}
+      );
    }
 }
 

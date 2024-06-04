@@ -12,10 +12,14 @@ const PCManagerLayout = ({
       { title: 'add client', href: '/pcd/manager/add-client' },
    ];
    return (
-      <div>
-         <SIdeNav items={departments} />
-         {children}
-      </div>
+      <html>
+         <body>
+            <div>
+               <SIdeNav items={departments} />
+               {children}
+            </div>
+         </body>
+      </html>
 
    )
 }
